@@ -57,18 +57,24 @@ public class JobsController {
 	}
 
 	AbsStaffMember searchMember(String name) throws Exception{
+		AbsStaffMember e=null;
 		for (AbsStaffMember member : repository.getAllMembers()) {
 			if(member.getName().equalsIgnoreCase(name)) {
-				return member;
-			}
+				e= member;
+			}			
 		}
-		throw new Exception();
+		return e;
 	}
 	
 	public void deleteMember(String name) throws Exception{
 		AbsStaffMember member = this.searchMember(name);
-		repository.delMember(member);
-		System.out.println("Borrado");		
+		if(member!= null) {
+			repository.delMember(member);
+			System.out.println("Borrado");
+		}else {
+			System.out.println("Empleado no encontrado");
+		}
+				
 	}
 	
 	
