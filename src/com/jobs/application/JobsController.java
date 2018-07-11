@@ -66,14 +66,11 @@ public class JobsController {
 		return e;
 	}
 	
-	public void deleteMember(String name) throws Exception{
+	public boolean deleteMember(String name) throws Exception{
 		AbsStaffMember member = this.searchMember(name);
 		if(member!= null) {
-			repository.delMember(member);
-			System.out.println("Borrado");
-		}else {
-			System.out.println("Empleado no encontrado");
-		}
+			return repository.delMember(member);
+		}return false;
 				
 	}
 	
